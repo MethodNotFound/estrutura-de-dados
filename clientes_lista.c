@@ -26,15 +26,6 @@ int cadastrarClienteNaLista(struct ClientesLista* lista, Cliente* cliente) {
   return lista->tamanho - 1;
 }
 
-void listarClientes(struct ClientesLista* lista) {
-  for(int i = 0; i < lista->tamanho; i++) {
-    printf("\n");
-    printf("cpf: %s \n", lista->clientes[i]->cpf);
-    printf("nome: %s \n", lista->clientes[i]->nome);
-    printf("numero: %s \n", lista->clientes[i]->numero);
-  }
-}
-
 // poderia usar um index? poderia, maaaaaas, nesse projeto eXtreme GoHorse rules
 int buscarClientePorCpf(struct ClientesLista* lista, char* cpf) {
   for(int i = 0; i < lista->tamanho; i++) {
@@ -44,3 +35,5 @@ int buscarClientePorCpf(struct ClientesLista* lista, char* cpf) {
   }
   return -1;
 }
+
+// TODO deletar cliente.....
