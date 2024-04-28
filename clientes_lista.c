@@ -6,8 +6,23 @@ typedef struct {
 
 struct ClientesLista {
   int tamanho;
-  Cliente* *clientes; // lista dinamica
+  Cliente* clientes; // lista dinamica
 };
+
+void inspectCliente(Cliente cliente) {
+  printf("cpf: %s \n", cliente.cpf);
+  printf("nome: %s \n", cliente.nome);
+  printf("numero: %s \n", cliente.numero);
+}
+
+void setClienteAttributes(Cliente* cliente){
+  printf("cpf : ");
+  scanf("%s", cliente->cpf);
+  printf("nome : ");
+  scanf("%s", cliente->nome);
+  printf("numero : ");
+  scanf("%s", cliente->numero);
+}
 
 void inicializarClientesLista(struct ClientesLista* lista) {
   lista->tamanho = 0;
@@ -16,12 +31,13 @@ void inicializarClientesLista(struct ClientesLista* lista) {
 int cadastrarClienteNaLista(struct ClientesLista* lista, Cliente* cliente) {
   lista->tamanho = lista->tamanho + 1;
 
-  if (lista->tamanho == 1)
-    lista->clientes = (Cliente **)malloc(lista->tamanho * sizeof(Cliente));
-  else
-    lista->clientes = (Cliente **)realloc(lista->clientes, lista->tamanho * sizeof(Cliente));
+  lista->clientes = (Cliente *)realloc(lista->clientes, lista->tamanho * sizeof(Cliente));
 
-  lista->clientes[lista->tamanho - 1] = cliente;
+  Cliente novoCliente;
+  strcpy(novoCliente.cpf, cliente->cpf);
+  strcpy(novoCliente.nome, cliente->nome);
+  strcpy(novoCliente.numero, cliente->numero);
+  lista->clientes[lista->tamanho - 1] = novoCliente;
 
   return lista->tamanho - 1;
 }
@@ -29,7 +45,7 @@ int cadastrarClienteNaLista(struct ClientesLista* lista, Cliente* cliente) {
 // poderia usar um index? poderia, maaaaaas, nesse projeto eXtreme GoHorse rules
 int buscarClientePorCpf(struct ClientesLista* lista, char* cpf) {
   for(int i = 0; i < lista->tamanho; i++) {
-    if(lista->clientes[i]->cpf == cpf) {
+    if(strcmp(lista->clientes[i].cpf, cpf) == 0) {
       return i;
     }
   }

@@ -10,11 +10,18 @@ void mainActions(struct ClientesLista* lista, struct Fila* fila){
     printf("selecionar ação: ");
     scanf("%d", &input);
 
-    if(input == 0)
+    if(input == 0){
       clientesActions(lista);
-    if(input == 1)
+    }
+    else if(input == 1) {
       filaActions(lista, fila);
-    if(input == 2)
+    }
+    else if(input == 2) {
       return;
+    }
+    else {
+      char t;
+      scanf("%s", &t);
+    }
   }
 }
