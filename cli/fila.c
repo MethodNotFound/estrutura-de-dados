@@ -6,7 +6,7 @@ void chamarProximo(struct ClientesLista* lista, struct Fila* fila){
   Cliente cliente = lista->clientes[ficha.clienteIndex];
 
 
-  printf("\nproximo cliente na fila:\n");
+  printf("\nproximo ficha: %s\n", ficha.id);
   inspectCliente(cliente);
 
   printf("\npressione qualquer tecla para voltar");
@@ -60,6 +60,22 @@ void adicinarFicha(struct ClientesLista* lista, struct Fila* fila){
   getchar();
 }
 
+
+void listarFichas(struct ClientesLista* lista, struct Fila* fila){
+  system("clear");
+
+  printf("Listar fichas\n");
+
+  for(int i = 0; i < fila->tamanho; i++){
+    printf("\nficha %s\n", fila->elementos[i].id);
+    inspectCliente(lista->clientes[fila->elementos[i].clienteIndex]);
+  }
+
+  printf("\npressione qualquer tecla para voltar");
+  getchar();
+  getchar();
+}
+
 void filaActions(struct ClientesLista* lista, struct Fila* fila){
   while(1) {
     system("clear");
@@ -83,7 +99,7 @@ void filaActions(struct ClientesLista* lista, struct Fila* fila){
       adicinarFicha(lista, fila);
     }
     else if(input == 2){
-      adicinarFicha(lista, fila);
+      listarFichas(lista, fila);
     }
     else if(input == 3){
       return;
