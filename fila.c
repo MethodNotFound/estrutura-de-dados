@@ -66,3 +66,13 @@ FichaCliente* peek(struct Fila* fila) {
     return NULL;
   }
 }
+
+int clienteNaFila(struct Fila* fila, int clienteIndex){
+  // outra busca nao optimizada
+  for(int i = 0; i < fila->tamanho; i++){
+    if(fila->elementos[i].clienteIndex == clienteIndex) {
+      return 1;
+    }
+  }
+  return 0;
+}

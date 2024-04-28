@@ -83,6 +83,9 @@ void clientesActions(struct ClientesLista* lista){
   while(1){
     system("clear");
 
+    printf("total de clientes cadastrados: %d\n", lista->tamanho);
+    printf("\n");
+
     printf("[0] cadastrar cliente\n");
     printf("[1] listar clientes\n");
     printf("[2] consultar cliente\n");
