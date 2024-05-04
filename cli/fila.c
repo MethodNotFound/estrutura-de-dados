@@ -1,12 +1,17 @@
-void chamarProximo(struct ClientesLista* lista, struct Fila* fila){
+void chamarProximo(struct ClientesLista* lista, struct Fila* fila, struct Fila* filaPri){
   system("clear");
 
-  FichaCliente ficha =  *dequeue(fila);
+  FichaCliente ficha;
+  if(filaPri->tamanho > 0) {
+    ficha = *dequeue(filaPri);
+    printf("cliente chamado da fila de prioridade\n");
+  } else {
+    ficha = *dequeue(fila);
+  }
 
   Cliente cliente = lista->clientes[ficha.clienteIndex];
 
-
-  printf("\nproximo ficha: %s\n", ficha.id);
+  printf("\nficha: %s\n", ficha.id);
   inspectCliente(cliente);
 
   printf("\npressione qualquer tecla para voltar");
@@ -14,10 +19,18 @@ void chamarProximo(struct ClientesLista* lista, struct Fila* fila){
   getchar();
 }
 
-void adicinarFicha(struct ClientesLista* lista, struct Fila* fila){
+void adicinarFicha(struct ClientesLista* lista, struct Fila* fila, struct Fila* filaPri){
   system("clear");
 
   printf("Adicionar ficha\n");
+
+  char prioritario[10];
+  printf("o cliente é prioritário [S/N]: ");
+  fflush(stdin);
+  scanf("%s", &prioritario);
+  if(strcmp(prioritario, "S") == 0 || strcmp(prioritario, "s") == 0) {
+    printf("cadastrando ficha como prioritária\n");
+  }
 
   char cpf[50];
   printf("digite o cpf : ");
@@ -36,7 +49,7 @@ void adicinarFicha(struct ClientesLista* lista, struct Fila* fila){
     fflush(stdin);
     printf("nome : ");
     scanf(" %50[^\n]c", &cliente.nome);
-    printf("numero : ");
+    printf("telefone : ");
     scanf(" %50[^\n]c", &cliente.numero);
 
     clienteIndex = cadastrarClienteNaLista(lista, &cliente);
@@ -52,9 +65,15 @@ void adicinarFicha(struct ClientesLista* lista, struct Fila* fila){
     }
   }
 
-  FichaCliente ficha = novaFicha(clienteIndex);
-  enqueue(fila, &ficha);
-  printf("adicionado na fila");
+  if(strcmp(prioritario, "S") == 0 || strcmp(prioritario, "s") == 0) {
+    FichaCliente ficha = novaFicha(clienteIndex);
+    enqueue(filaPri, &ficha);
+    printf("adicionado na fila prioritária");
+  } else {
+    FichaCliente ficha = novaFicha(clienteIndex);
+    enqueue(fila, &ficha);
+    printf("adicionado na fila");
+  }
 
   printf("\npressione qualquer tecla para voltar");
   getchar();
@@ -77,11 +96,11 @@ void listarFichas(struct ClientesLista* lista, struct Fila* fila){
   getchar();
 }
 
-void filaActions(struct ClientesLista* lista, struct Fila* fila){
+void filaActions(struct ClientesLista* lista, struct Fila* fila, struct Fila* filaPri){
   while(1) {
     system("clear");
 
-    printf("total de fichas na fila: %d\n", fila->tamanho);
+    printf("total de fichas na fila: %d\n", fila->tamanho + filaPri->tamanho);
     printf("\n");
 
     printf("[0] chamar proxima ficha\n");
@@ -94,10 +113,10 @@ void filaActions(struct ClientesLista* lista, struct Fila* fila){
     scanf("%d", &input);
 
     if(input == 0){
-      chamarProximo(lista, fila);
+      chamarProximo(lista, fila, filaPri);
     }
     else if(input == 1){
-      adicinarFicha(lista, fila);
+      adicinarFicha(lista, fila, filaPri);
     }
     /* else if(input == 2){ */
     /*   listarFichas(lista, fila); */

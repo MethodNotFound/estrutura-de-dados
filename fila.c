@@ -1,7 +1,5 @@
 #define MAX_SIZE 100
 
-
-// TODO adicionar uma fila com prioridade
 // TODO mostrar o programa para o cliente
 typedef struct {
   char id[50];

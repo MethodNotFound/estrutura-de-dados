@@ -12,7 +12,7 @@ struct ClientesLista {
 void inspectCliente(Cliente cliente) {
   printf("cpf: %s \n", cliente.cpf);
   printf("nome: %s \n", cliente.nome);
-  printf("numero: %s \n", cliente.numero);
+  printf("telefone: %s \n", cliente.numero);
 }
 
 void setClienteAttributes(Cliente* cliente){
@@ -21,7 +21,7 @@ void setClienteAttributes(Cliente* cliente){
   scanf(" %50[^\n]c", cliente->cpf);
   printf("nome : ");
   scanf(" %50[^\n]c", cliente->nome);
-  printf("numero : ");
+  printf("telefone : ");
   scanf(" %50[^\n]c", cliente->numero);
 }
 

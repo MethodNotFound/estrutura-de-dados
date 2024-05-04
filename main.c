@@ -18,8 +18,10 @@ int main(void) {
   inicializarClientesLista(&listaClientes);
   struct Fila fila;
   inicializarFila(&fila);
+  struct Fila filaPri;
+  inicializarFila(&filaPri);
 
-  mainActions(&listaClientes, &fila);
+  mainActions(&listaClientes, &fila, &filaPri);
 
   return 0;
 }

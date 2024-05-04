@@ -1,4 +1,4 @@
-void mainActions(struct ClientesLista* lista, struct Fila* fila){
+void mainActions(struct ClientesLista* lista, struct Fila* fila, struct Fila* filaPri){
   while(1) {
     system("clear");
 
@@ -14,7 +14,7 @@ void mainActions(struct ClientesLista* lista, struct Fila* fila){
       clientesActions(lista);
     }
     else if(input == 1) {
-      filaActions(lista, fila);
+      filaActions(lista, fila, filaPri);
     }
     else if(input == 2) {
       return;
