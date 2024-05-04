@@ -33,10 +33,11 @@ void adicinarFicha(struct ClientesLista* lista, struct Fila* fila){
     printf("cadastrando novo cliente cliente\n");
 
     strcpy(cliente.cpf, cpf);
+    fflush(stdin);
     printf("nome : ");
-    scanf("%s", &cliente.nome);
+    scanf(" %50[^\n]c", &cliente.nome);
     printf("numero : ");
-    scanf("%s", &cliente.numero);
+    scanf(" %50[^\n]c", &cliente.numero);
 
     clienteIndex = cadastrarClienteNaLista(lista, &cliente);
     printf("\ncliente cadastrado\n");
@@ -85,8 +86,8 @@ void filaActions(struct ClientesLista* lista, struct Fila* fila){
 
     printf("[0] chamar proxima ficha\n");
     printf("[1] adicinar ficha na fila\n");
-    printf("[2] listar fichas\n");
-    printf("[3] sair\n");
+    /* printf("[2] listar fichas\n"); */
+    printf("[2] sair\n");
 
     int input;
     printf("selecionar ação: ");
@@ -98,10 +99,10 @@ void filaActions(struct ClientesLista* lista, struct Fila* fila){
     else if(input == 1){
       adicinarFicha(lista, fila);
     }
+    /* else if(input == 2){ */
+    /*   listarFichas(lista, fila); */
+    /* } */
     else if(input == 2){
-      listarFichas(lista, fila);
-    }
-    else if(input == 3){
       return;
     }
     else {

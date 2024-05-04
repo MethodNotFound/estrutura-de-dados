@@ -17,11 +17,12 @@ void inspectCliente(Cliente cliente) {
 
 void setClienteAttributes(Cliente* cliente){
   printf("cpf : ");
-  scanf("%s", cliente->cpf);
+  fflush(stdin);
+  scanf(" %50[^\n]c", cliente->cpf);
   printf("nome : ");
-  scanf("%s", cliente->nome);
+  scanf(" %50[^\n]c", cliente->nome);
   printf("numero : ");
-  scanf("%s", cliente->numero);
+  scanf(" %50[^\n]c", cliente->numero);
 }
 
 void inicializarClientesLista(struct ClientesLista* lista) {
